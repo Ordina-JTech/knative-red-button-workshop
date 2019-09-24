@@ -71,9 +71,9 @@ spec:
   type: git
   params:
     - name: revision
-      value: master
+      value: workshop
     - name: url
-      value: https://github.com/jpdecastro/micronaut-basic
+      value: https://github.com/knative-red-button/micronaut-app
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
