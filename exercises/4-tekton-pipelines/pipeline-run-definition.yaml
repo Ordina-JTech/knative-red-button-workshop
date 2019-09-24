@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: build-and-deploy-pipeline-run
+  generateName: build-and-deploy-pipeline-runner-
+spec:
+  serviceAccount: docker-service-account
+  pipelineRef:
+    name: build-and-deploy-pipeline
+  resources:
+    - name: source-repo
+      resourceRef:
+        name: git-source-pr
+    - name: docker-image
+      resourceRef:
+        name: docker-image-pr

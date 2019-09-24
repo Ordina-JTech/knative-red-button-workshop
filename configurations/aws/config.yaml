@@ -1,0 +1,25 @@
+apiVersion: v1
+clusters:
+  - cluster:
+      certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1Ea3lNekU0TWpFMU9Wb1hEVEk1TURreU1ERTRNakUxT1Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnJCCldUZkdVSXgyWTY1bDlVajhuZURxMUI0QmRIUkl1SUJKVFJSaW5jZllQd0lvY01YRFczdnVFWVc3YWc0VTBQbGQKOEJDOEFHWTJzSWlwZmR4d2FmR2lXd0lNNkovQm1jMmVzN3pjcHlnSVJBbHJuWEtzN0dNRnMzZHdqWXA2MGR1SQpBMU5uVXpoYTN4aHpsZ1lYbWdlZ1ZZOE5SVkJjb2xXVGlYWk56eE14UVdWdDlxLzJvYzkrU3ZkZEFFSy95MHhvCjZCNDk2ZXVZZW53Ky9qTWowaXFRcUg1K0xiMDVzdDNQNzlDK1JuZElwNFlybWcwWGxrVks0RkM4azFzZDlPb24KSUtWMmxZZlEyWGpVbStNQ2tnclBGWnVNVWd2akNXUGdqcmJiTDF4cnIzOGNnZE4xZVpCemVodHNLekc2NkpFMQpyR0xqSXFaYlRPNG5WbEgzaVJrQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUjBSMm5sYlUyMnlnMjhBTjBDc1dhS1RGOHYKZmdYMXk5T0w5dDR3R1d4TWl0SjYyV3VhUy9hS09DaVBFbEVvMUs2TFBGZERYSXdHRzdVVWZCcnRkYkxmRTFTVwpITHBROVFrSExqeWY5bVZQWEtITFRSQW9DMVAxMTFJaXlCWjE1SFRNVVJlaklUNUZSWTJteDU1WnRWSXdHK1JNCmk3MU1sMVEza2FYbnp0OTF5eTBvNkYvV2lnSTkzOVhQUXFCenV2bEFvR2Z1MEgwbVBlRCtjVWZ4bWMrOW5HcXoKUmhWM1FncjlzS2xqVldsQ05DMnJwY05WUk9PdllrNmovbWtpL3hqa2lrMElWMkt0UHJ6NmpIQlZqOW1Pcm4zeQp5NWhxeW5FdkEyVUp5R082RlFReWYxMXhkcEpBTnRGV0RQU3E0TExrMUNmZ0pCbVJ1SFl3UFptSkxJND0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+      server: https://A75108082D04F9F85A267EE7DAA0A119.yl4.eu-west-1.eks.amazonaws.com
+    name: aws-kubernetes-cluster2.eu-west-1.eksctl.io
+contexts:
+  - context:
+      cluster: aws-kubernetes-cluster2.eu-west-1.eksctl.io
+      user: workshop-red-button@aws-kubernetes-cluster2.eu-west-1.eksctl.io
+    name: workshop-red-button@aws-kubernetes-cluster2.eu-west-1.eksctl.io
+current-context: workshop-red-button@aws-kubernetes-cluster2.eu-west-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+  - name: workshop-red-button@aws-kubernetes-cluster2.eu-west-1.eksctl.io
+    user:
+      exec:
+        apiVersion: client.authentication.k8s.io/v1alpha1
+        args:
+          - token
+          - -i
+          - aws-kubernetes-cluster2
+        command: aws-iam-authenticator
+        env: null
