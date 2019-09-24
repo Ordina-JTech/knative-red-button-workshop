@@ -13,8 +13,8 @@ To save you some time, we've included those in this Git-repository. You can find
 ## Setup your environment script
 In the shell-script 'environment' you will find the following three environment variables. These will be used throughout the workshop to provide some consistency and separation of deployments. 
 
-KNATIVE_CLOUD - can be either "azure" or "aws"
-KNATIVE_NAMESPACE - can be any cluser-unique value
+KNATIVE_CLOUD - can be either "azure" or "aws" \
+KNATIVE_NAMESPACE - can be any cluser-unique value \
 KNATIVE_SERVICE - the name you want to give your application
 
 ## Create a namespace in Kubernetes
