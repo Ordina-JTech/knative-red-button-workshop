@@ -7,10 +7,17 @@ Docker registry. We have taken the burden of creating this pipeline for you but.
 on purpose! We challenge you to have a look and try to fix the issue in the pipeline so that it
 can publish images to the Docker registry again. Let's get started!
 
-Before you start, make sure you are working on your own branch.
+### Prerequisites
+Before you begin you must have a personal Github account to fork the repository below. You will 
+need this to make changes later. If you don't want to do this now it's always possible to work
+with someone else.
+```
+git clone -b workshop http://github.com/knative-red-button/micronaut-app
+```
 
-### 1. Open and view Pipeline contents
+### 1. Open and view Pipeline definition
 Let's start by opening the Tekton pipeline YAML file, do this using your favourite YAML editor.
+All scripts and files reside under section 4 of the exercises.
 
 * Open file `pipeline-definition.yaml`
 
@@ -29,13 +36,13 @@ Note that all components are separated by three dashes `---`, this makes it poss
 build components in one file and apply them in Kubernetes(K8s).
 
 ### 2. Change/modify Pipeline definition
-So, as we mentioned before the pipeline is broken. We need to make some changes to make it work.
-Your changes should be committed on separate Git branch,
-let's configure that in our pipeline.
+So, as we mentioned before the pipeline is broken and we need to make some changes to make it work.
+Your changes should be committed to your forked version of the repository, let's configure that in our 
+pipeline in the steps below.
 
-1. Search for PipelineResource with name: `git-source-pr` and modify key/value param: `revision` to
-contain value: `fill-in-your-branch-name`. This should match the branch name you will be working in;
-2. Search for PipelineResource with name: `docker-image-pr` and modify key/value param: `url` to contain
+1. Search for PipelineResource with name: `git-source-pr` and modify value for param: `url` to
+contain value: `fill-in-your-forked-repo-url`;
+2. Search for PipelineResource with name: `docker-image-pr` and modify value for param: `url` to contain
 value: `docker.io/knativeredbutton/<unique-docker-image-name>`. Change the placeholder to contain a unique
 name for the application you will be serving/deploying;
 3. Search for Pipeline resource with name: `build-and-deploy-pipeline` and rename it to something
@@ -49,7 +56,7 @@ We can now apply the modified pipeline.
 ./pipeline-definition-installer.sh <participant-namespace>
 ```
 
-### 4. Open and view Pipeline Runner contents
+### 4. Open and view Pipeline run definition
 This file contains the Pipeline runner definition that will kick-start the pipeline process. A pipeline
 runner is of kind: `PipelineRun`.
 
@@ -58,14 +65,14 @@ runner is of kind: `PipelineRun`.
 Looking at this file we can see that it too contains a name, a reference to the pipeline we created and
 the needed pipeline resources.
 
-### 5. Change/modify Pipeline Runner definition
+### 5. Change/modify Pipeline run definition
 We need to make some changes so that we trigger the correct pipeline.
 
 1. Change pipeline metadata, so that it's property `name` and `generateName` contain a unique value;
 2. Make sure the property `name` from `pipelineRef` contains the pipeline name you used from previous step;
 3. Save changes and close the file;
 
-### 6. Apply Pipeline Runner changes & Kickstart Pipeline
+### 6. Apply Pipeline run definition changes & Kickstart Pipeline
 When we apply the pipeline runner file in K8s it will also Kickstart the pipeline. So make sure that
 all changes are set properly and apply the file:
 
@@ -101,7 +108,6 @@ kubectl -n tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
 You can now access the Tekton Dashboard at `http://localhost:9097`
 
 Or... you can also access the Tekton dashboard by creating a proxy.
-
 ```
 kubectl proxy
 ```
@@ -119,7 +125,7 @@ Were you able to spot the issue?? good for you!, now let's do the following:
 3. Restart pipelineRun again (see previous step) and monitor state changes;
 
 If all goes well our pipelineRun status should be `status.conditions.type: Succeded`. If not try again
-and repeat steps one to three until it works by making changes and monitoring the pipeline state.
+and repeat steps 1 thru 3 until it works by making changes and monitoring the pipeline state.
 
 ### 9. Verify built image is available in Docker registry
 If the pipeline run is successful then a fresh image should be available for deployment. Go to the Docker
@@ -148,5 +154,5 @@ should be able to access the deployed service. If not, have a look at what went 
 make sure your script input is correct.
 
 # The Challenger!
-Did you fly through the steps and was this too easy for you? Don't worry there is plenty to improve! how about
+Did you fly thru the steps and was this too easy for you? Don't worry there is plenty to improve! how about
 automating the deployment yourself? We challenge you to automate this process in your Pipeline by adding a new step.

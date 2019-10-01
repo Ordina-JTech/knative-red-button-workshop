@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if [ -z "$NAMESPACE" ]
+if [ -z "$KNATIVE_NAMESPACE" ]
 then
-  export NAMESPACE=$1
+  export KNATIVE_NAMESPACE=$1
 fi
 
 # install serviceaccount
-kubectl delete -f pipeline-run-definition.yaml -n ${NAMESPACE}
+kubectl delete -f pipeline-run-definition.yaml -n "${KNATIVE_NAMESPACE}"
 echo "PipelineRun removed"

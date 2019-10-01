@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if [ -z "$NAMESPACE" ]
+if [ -z "$KNATIVE_NAMESPACE" ]
 then
-  export NAMESPACE=$1
+  export KNATIVE_NAMESPACE=$1
 fi
 
-kubectl apply -f pipeline-definition.yaml -n $NAMESPACE
+kubectl apply -f pipeline-definition.yaml -n "$KNATIVE_NAMESPACE"
 echo "Pipeline definition installed"
