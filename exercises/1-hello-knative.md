@@ -1,14 +1,13 @@
 # Hello KNative
 ## Goal of the exercise 
 In this exercise you will learn to deploy a simple application to a remote cloud, using KNative. You will get familiar with the Kubernetes CLI and the KNative CLI. 
-
+Each deployment will be started with the push of a button. 
 
 ### Deploy your application
-
 We've already created a docker image for you. You can find this image at
 docker.io/knativeredbutton/game:latest
 
-Using kn, try to deploy that application to the cloud. Do not forget to give your service a name and deploy it in your own namespace.
+Using the button, you will try to deploy that application to the cloud. Do not forget to give your service a name and deploy it in your own namespace.
 
 Setup the deployment-script (deploy.sh), so that it performs the deployment and push the button...
 

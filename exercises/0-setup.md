@@ -5,6 +5,8 @@ Install the following if not yet installed
 - git-bash (only for Windows users) https://gitforwindows.org/   
 - Java Runtime Environment JRE https://java.com/en/download/manual.jsp or https://www.oracle.com/technetwork/java/javase/downloads/index.html
 
+## Connect the red button
+First connect the red button with the usb-cable. After that make the button listen to button pushes by running the `button.sh`. This script should keep running during the whole workshop.
 
 ## Add CLI's to your path
 During the workshop we rely heavily on the CLI's kubectl (for Kubernetes) and kn (for KNative).

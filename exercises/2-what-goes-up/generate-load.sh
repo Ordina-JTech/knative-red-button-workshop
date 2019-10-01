@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-SERVICE_DOMAIN="http://hello-tijmen1.tijmen.52.214.236.14.sslip.io";
+
+SERVICE_DOMAIN="http://<SERVICE>.<WORKSPACE>.<IP-ADDRESS>.sslip.io";
 NUMBER_OF_CONCURRENT_CALLS=7;
 
 counter=1
