@@ -11,7 +11,7 @@ can publish images to the Docker registry again. Let's get started!
 Before you begin you must have a personal Github account to fork the repository below. You will 
 need this to make changes later. If you don't want to do this now it's always possible to work
 with someone else.
-```
+```sh
 git clone -b workshop http://github.com/knative-red-button/micronaut-app
 ```
 
@@ -50,10 +50,10 @@ unique (i.e. `bdp-team-ordina`);
 4. Save changes and close the file;
 
 ### 3. Apply Pipeline changes
-We can now apply the modified pipeline.
-
+We can now apply the modified pipeline by running the script below. Provide the script with namespace value
+if you haven't run any exercises from previous chapters. 
 ```sh
-./pipeline-definition-installer.sh <participant-namespace>
+./pipeline-definition-installer.sh <participant-namespace> 
 ```
 
 ### 4. Open and view Pipeline run definition
@@ -75,19 +75,17 @@ We need to make some changes so that we trigger the correct pipeline.
 ### 6. Apply Pipeline run definition changes & Kickstart Pipeline
 When we apply the pipeline runner file in K8s it will also Kickstart the pipeline. So make sure that
 all changes are set properly and apply the file:
-
 ```sh
 ./pipeline-starter.sh <participant-namespace>
 ```
 
 ### 7. Monitor Pipeline execution
 With the following command's it is possible to get status info about the running pipeline(s):
-
-```
+```sh
 kubectl describe pipelinerun <pipeline-name> -n <participant-namespace>
 ```
 Or you can also use:
-```
+```sh
 kubectl get pipelineruns/<pipeline-name> -n <participant-namespace> -o yaml
 ```
 
@@ -102,27 +100,30 @@ The best way to visually see what your Tekton pipeline is doing is by making use
 and view PipelineRuns, TaskRuns and it's resources. So how to we access this Tekton dashboard?
 
 From your command-line type the following:
-```
+```sh
 kubectl -n tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
 ```
 You can now access the Tekton Dashboard at `http://localhost:9097`
 
 Or... you can also access the Tekton dashboard by creating a proxy.
-```
+```sh
 kubectl proxy
 ```
 
 Now you can access the dashboard at http://localhost:8001/api/v1/namespaces/tekton-pipelines/services/tekton-dashboard:http/proxy/
 
 ### 8. Fix issue and restart Pipeline
-Were you able to spot the issue?? good for you!, now let's do the following:
+Were you able to spot the issue? Good for you!, now let's do the following:
 
-1. Make changes to your local personal Git branch, commit and push those changes;
+1. Make changes to your forked repository, commit and push those changes;
 2. Remove your previous pipelineRun;
 ```sh
 ./pipeline-deleter.sh <participant-namespace>
 ```
-3. Restart pipelineRun again (see previous step) and monitor state changes;
+3. Restart pipelineRun again and monitor state changes;
+```sh
+./pipeline-starter.sh <participant-namespace>
+```
 
 If all goes well our pipelineRun status should be `status.conditions.type: Succeded`. If not try again
 and repeat steps 1 thru 3 until it works by making changes and monitoring the pipeline state.
@@ -134,11 +135,9 @@ for should match the name used in the PipelineResource `docker-image-pr`, should
 like `http://docker.io/knativeredbutton/<image-name>`
 
 ### 10. Deploy docker image to the cluster
-It's time to deploy our Docker image to the K8s cluster. You have done this in previous examples by
-using pre-built bash scripts like `deploy.sh`, but this time we will run the command ourselves.
-
-Don't forget to replace `<placholder>` information in the command. It should match with your configuration.
-```
+It's time to deploy our Docker image to the K8s cluster as a service. We will use Knative's `KN` client to deploy
+our service in the cluster by issuing the following command, dont forget to replace the `<placeholder>` values.
+```sh
 kn service create <knative-service> \
         --image docker.io/knativeredbutton/<image-name>:latest \
         --namespace <participant-namespace> \
@@ -146,12 +145,24 @@ kn service create <knative-service> \
 ```
 
 ### 11. Access deployed service
-Time to check our service is deployed correctly! For this step we must open the `4_access_service_deployment\1.verify.sh`
-script and modify the `service-name` and `participant-namespace` values to match with previous deployment.
+To verify if our service has deployed correctly we can issue another handy `KN` client command:
+```sh
+kn service list --namespace <participant-namespace>
+```
+This should return something like...
+```sh
+$ kn service list --namespace example
 
-After making those changes, fire up the script. If all went well the `CURL` command fired by the script
-should be able to access the deployed service. If not, have a look at what went wrong in the output and
-make sure your script input is correct.
+NAME          URL                                                GENERATION   AGE    CONDITIONS   READY   REASON
+application   http://application.example.52.148.255.5.sslip.io   6            7d2h   3 OK / 3     True
+```
+
+If the deployment is ready we can then extract/copy the `URL` of our deployed application and fire up a `CURL`
+command to the service.
+```sh
+$ curl http://application.example.52.148.255.5.sslip.io
+``` 
+You can always open a browser of your choice and go to: http://application.example.52.148.255.5.sslip.io
 
 # The Challenger!
 Did you fly thru the steps and was this too easy for you? Don't worry there is plenty to improve! how about

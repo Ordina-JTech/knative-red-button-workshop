@@ -5,6 +5,5 @@ then
   export KNATIVE_NAMESPACE=$1
 fi
 
-# install serviceaccount
-kubectl delete -f pipeline-run-definition.yaml -n "${KNATIVE_NAMESPACE}"
-echo "PipelineRun removed"
+kubectl delete -f pipeline-run-definition.yaml -n "$KNATIVE_NAMESPACE"
+echo "PipelineRun removed for namespace: $KNATIVE_NAMESPACE"

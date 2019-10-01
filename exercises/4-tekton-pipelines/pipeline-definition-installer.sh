@@ -6,4 +6,4 @@ then
 fi
 
 kubectl apply -f pipeline-definition.yaml -n "$KNATIVE_NAMESPACE"
-echo "Pipeline definition installed"
+echo "Pipeline definition installed for namespace: $KNATIVE_NAMESPACE"
