@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 ## To be changed by participant
-export KNATIVE_CLOUD="aws"
-export KNATIVE_NAMESPACE="tijmen"
-export KNATIVE_SERVICE="hello-tijmen-game2"
+export KNATIVE_CLOUD=""
+export KNATIVE_NAMESPACE=""
+export KNATIVE_SERVICE=""
 
 
 # Setup cloud configuration
