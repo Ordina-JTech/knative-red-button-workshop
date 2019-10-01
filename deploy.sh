@@ -6,7 +6,7 @@ echo "Starting deployment at: $(date +"%T")"
 echo
 echo '===================='
 echo 'Setting up environment...'
-source environment.sh
+#source environment.sh
 
 echo
 echo '===================='
