@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -z "$KNATIVE_NAMESPACE" ]
-then
-  export KNATIVE_NAMESPACE=$1
-fi
-
-kubectl delete -f pipeline-run-definition.yaml -n "$KNATIVE_NAMESPACE"
-echo "PipelineRun removed for namespace: $KNATIVE_NAMESPACE"
+kubectl delete -f pipeline-definition.yaml --namespace "$1"
+kubectl delete -f pipeline-run-definition.yaml --namespace "$1"
+kubectl delete -f pipeline-service-account.yaml --namespace "$1"
+echo "-- Pipeline CRDS (pipeline definition, pipeline runner and serviceaccount) removed for namespace: $1"

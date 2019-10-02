@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
 metadata:
   name: build-and-deploy-pipeline
+  namespace: ordina
 spec:
   resources:
     - name: source-repo
@@ -29,6 +30,7 @@ apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: build-docker-image-from-git-source
+  namespace: ordina
 spec:
   inputs:
     resources:
@@ -67,11 +69,12 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: git-source-pr
+  namespace: ordina
 spec:
   type: git
   params:
     - name: revision
-      value: workshop
+      value: master
     - name: url
       value: https://github.com/knative-red-button/micronaut-app
 ---
@@ -79,9 +82,9 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: docker-image-pr
-  namespace: default
+  namespace: ordina
 spec:
   type: image
   params:
     - name: url
-      value: docker.io/knativeredbutton/micronaut-app-3
+      value: docker.io/knativeredbutton/micronaut-app-team-ordina
