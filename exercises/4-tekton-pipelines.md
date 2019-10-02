@@ -53,7 +53,7 @@ unique (i.e. `bdp-team-ordina`);
 We can now apply the modified pipeline by running the script below. Provide the script with namespace value
 if you haven't run any exercises from previous chapters. 
 ```sh
-./pipeline-definition-installer.sh <participant-namespace> 
+./pipeline-def-install.sh
 ```
 
 ### 4. Open and view Pipeline run definition
@@ -76,17 +76,17 @@ We need to make some changes so that we trigger the correct pipeline.
 When we apply the pipeline runner file in K8s it will also Kickstart the pipeline. So make sure that
 all changes are set properly and apply the file:
 ```sh
-./pipeline-starter.sh <participant-namespace>
+./pipeline-run-start.sh
 ```
 
 ### 7. Monitor Pipeline execution
 With the following command's it is possible to get status info about the running pipeline(s):
 ```sh
-kubectl describe pipelinerun <pipeline-name> -n <participant-namespace>
+kubectl describe pipelinerun <pipeline-name>
 ```
 Or you can also use:
 ```sh
-kubectl get pipelineruns/<pipeline-name> -n <participant-namespace> -o yaml
+kubectl get pipelineruns/<pipeline-name> -o yaml
 ```
 
 With the optional `--watch` property applied to the command makes it possible to monitor real-time
@@ -116,13 +116,13 @@ Now you can access the dashboard at http://localhost:8001/api/v1/namespaces/tekt
 Were you able to spot the issue? Good for you!, now let's do the following:
 
 1. Make changes to your forked repository, commit and push those changes;
-2. Remove your previous pipelineRun;
+2. Remove your previous pipeline resources;
 ```sh
-./pipeline-deleter.sh <participant-namespace>
+./pipeline-run-delete.sh
 ```
 3. Restart pipelineRun again and monitor state changes;
 ```sh
-./pipeline-starter.sh <participant-namespace>
+./pipeline-run-start.sh
 ```
 
 If all goes well our pipelineRun status should be `status.conditions.type: Succeded`. If not try again
@@ -147,11 +147,11 @@ kn service create <knative-service> \
 ### 11. Access deployed service
 To verify if our service has deployed correctly we can issue another handy `KN` client command:
 ```sh
-kn service list --namespace <participant-namespace>
+kn service list
 ```
 This should return something like...
 ```sh
-$ kn service list --namespace example
+$ kn service list
 
 NAME          URL                                                GENERATION   AGE    CONDITIONS   READY   REASON
 application   http://application.example.52.148.255.5.sslip.io   6            7d2h   3 OK / 3     True
