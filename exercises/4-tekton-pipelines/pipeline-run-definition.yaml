@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineRun
 metadata:
   name: build-and-deploy-pipeline-run
-  namespace: ordina
   generateName: build-and-deploy-pipeline-runner-
 spec:
   serviceAccount: ordina-docker-service-account

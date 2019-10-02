@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
 metadata:
   name: build-and-deploy-pipeline
-  namespace: ordina
 spec:
   resources:
     - name: source-repo
@@ -30,7 +29,6 @@ apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: build-docker-image-from-git-source
-  namespace: ordina
 spec:
   inputs:
     resources:
@@ -69,7 +67,6 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: git-source-pr
-  namespace: ordina
 spec:
   type: git
   params:
@@ -82,7 +79,6 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: docker-image-pr
-  namespace: ordina
 spec:
   type: image
   params:
