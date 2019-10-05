@@ -20,6 +20,7 @@ For a final check you might want to put a next release live, without directly ex
 
 Now alter the `deploy.sh` script and deploy your next revision.
 Make sure to change the 'style' environment variable, so you can differentiate between the releases from your browser. 
+Possible options are: monochrome (default), vim, custom, retro
 
 Use `kn` to check to which revision your traffic is routed to now:
 `kn route list -n <namespace>`
