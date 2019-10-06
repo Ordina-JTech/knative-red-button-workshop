@@ -67,7 +67,7 @@ kubectl describe pipelinerun <pipeline-name>
 For more detailed information you can also use: `kubectl get pipelineruns/<pipeline-name> -o yaml`
 
 The best way to visually see what your Tekton pipeline is doing is by making use of the
-[Tekton Dashboard](https://github.com/tektoncd/dashboard). It provides a web-bases UI, where you manage
+[Tekton Dashboard](https://github.com/tektoncd/dashboard). It provides a web-based UI, where you manage
 and view PipelineRuns, TaskRuns and PipelineResources. 
 
 From your command-line type the following:
@@ -78,5 +78,5 @@ You can now access the Tekton Dashboard at `http://localhost:9097`
 
 
 ### Deploy the application
-As per previous assignments, try to complete the deploymentscript by using the `kn`-CLI. 
+As per previous assignments, try to complete the deployment script by using the `kn`-CLI. 
 

@@ -6,8 +6,6 @@ spec:
   params:
     - name: namespace
       type: string
-      description: We tag the container with the target-namespace value
-      default: none
   resources:
     - name: source-repo
       type: git
