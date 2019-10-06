@@ -1,0 +1,102 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: build-and-deploy-pipeline
+spec:
+  params:
+    - name: namespace
+      type: string
+      description: We tag the container with the target-namespace value
+      default: none
+  resources:
+    - name: source-repo
+      type: git
+    - name: docker-image
+      type: image
+  tasks:
+    - name: build
+      taskRef:
+        name: build-from-source-task
+      params:
+        - name: targetnamespace
+          value: ${params.namespace}
+      resources:
+        inputs:
+          - name: docker-source
+            resource: source-repo
+        outputs:
+          - name: builtImage
+            resource: docker-image
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: build-from-source-task
+spec:
+  inputs:
+    resources:
+      - name: docker-source
+        type: git
+    params:
+      - name: targetnamespace
+        type: string
+        description: We tag the container with the target-namespace value
+        default: none
+  outputs:
+    resources:
+      - name: builtImage
+        type: image
+  steps:
+    - name: build-and-push
+      image: gcr.io/kaniko-project/executor:v0.9.0
+      env:
+        - name: "DOCKER_CONFIG"
+          value: "/kaniko/.docker"
+      command:
+        - /kaniko/executor
+      args:
+        - --context=/workspace/docker-source
+        - --dockerfile=/workspace/docker-source/Dockerfile
+        - --destination=$(outputs.resources.builtImage.url):${inputs.params.targetnamespace}
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: git-pipeline-resource
+  description: the input for the task - a git-repository with the code of our application
+spec:
+  type: git
+  params:
+    - name: revision
+      value: master
+    - name: url
+      value: https://github.com/knative-red-button/micronaut-app
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: docker-pipeline-resource
+  description: the output of the task - a docker container pushed to docker.io
+spec:
+  type: image
+  params:
+    - name: url
+      value: docker.io/knativeredbutton/knative-red-button-app
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: docker-credentials-secret
+  annotations:
+    tekton.dev/docker-0: https://index.docker.io/v1/
+type: kubernetes.io/basic-auth
+data:
+  username: a25hdGl2ZXJlZGJ1dHRvbg==
+  password: cjNkQnV0dDBuZG9ja2VyaHViKF9jbCp1ZA==
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: docker-service-account
+secrets:
+  - name: docker-credentials-secret

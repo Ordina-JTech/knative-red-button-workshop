@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: pipeline-run-
+spec:
+  serviceAccount: <-- ? -->
+  pipelineRef:
+    name: <-- ? -->
+  resources:
+    - name: source-repo
+      resourceRef:
+        name: <-- ? -->
+    - name: docker-image
+      resourceRef:
+        name: <-- ? -->
+  params:
+    - name: <-- ? -->
+      value: <-- ? -->
