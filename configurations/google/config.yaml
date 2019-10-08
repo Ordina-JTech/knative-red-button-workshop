@@ -17,7 +17,7 @@ users:
     user:
       auth-provider:
         config:
-          access-token: ya29.ImabB0A1gcqB3qQgMIQ-kHMDO3gtqOSGaLwzwAHd-t5y-b1wPY3YHMWTUxuH0evRiqAHDL102R7EGz69Jrl3-u9O89wLRSD5NiLcqiuTLkv2eNsKw0mQ71j5ZfxE0APigApQzWIHXA0
+          access-token: ya29.ImabB24zd_vp-x12kEHhzOQa0gEttdO7Uzxdmn-HmEKy6LlvvF8tpJfg1YtGfNH7Wcq3_gh52l9bpl-GtrecqByVAcYfz_M1olFM6oRW0jRNmLFneMDaINeVocAf97U83gtj2F9xE1U
           cmd-args: config config-helper --format=json
           cmd-path: /Users/tbu23272/Downloads/google-cloud-sdk/bin/gcloud
           expiry: "2019-10-09T17:58:56Z"
