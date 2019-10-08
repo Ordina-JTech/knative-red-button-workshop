@@ -17,7 +17,7 @@ spec:
         name: build-from-source-task
       params:
         - name: targetnamespace
-          value: ${params.namespace}
+          value: $(params.namespace)
       resources:
         inputs:
           - name: docker-source
@@ -38,8 +38,6 @@ spec:
     params:
       - name: targetnamespace
         type: string
-        description: We tag the container with the target-namespace value
-        default: none
   outputs:
     resources:
       - name: builtImage
@@ -55,7 +53,7 @@ spec:
       args:
         - --context=/workspace/docker-source
         - --dockerfile=/workspace/docker-source/Dockerfile
-        - --destination=$(outputs.resources.builtImage.url):${inputs.params.targetnamespace}
+        - --destination=$(outputs.resources.builtImage.url):$(inputs.params.targetnamespace)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
