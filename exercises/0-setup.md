@@ -19,15 +19,6 @@ KNATIVE_CLOUD - can be either "azure" or "aws" \
 KNATIVE_NAMESPACE - can be any cluser-unique value \
 KNATIVE_SERVICE - the name you want to give your application
 
-## Create a namespace in Kubernetes
-During this workshop you will be sharing a Kubernetes cluster. To  separate your work with that of the other participants we will setup a namespace you can use. 
-
-Use the commands below to create your namespace.
-
-```
-kubectl create ns ${KNATIVE_NAMESPACE}
-```
-
 ## Setup your envirionment in your console
 In bash run `"source environment.sh"`.
 If all is setup correctly, this will output the following.
@@ -35,6 +26,15 @@ If all is setup correctly, this will output the following.
 ```
 KUBECONFIG has been set to: /....../configurations/...../config.yaml
 Context "...." modified.
+```
+
+## Create a namespace in Kubernetes
+During this workshop you will be sharing a Kubernetes cluster. To  separate your work with that of the other participants we will setup a namespace you can use. 
+
+Use the commands below to create your namespace.
+
+```
+kubectl create ns ${KNATIVE_NAMESPACE}
 ```
 
 ## Verify your setup

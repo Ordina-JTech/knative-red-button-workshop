@@ -49,7 +49,7 @@ Run `kubectl get pods -n <namespace>` to list all pods within these namespaces.
 KNative comes out-of-the-box with monitoring tooling. To access that tooling run the command below and navigate to the [KNative dashboard](http://localhost:3000). 
 
 ```
-kubectl port-forward --namespace knative-monitoring \
+kubectl port-forward --namespace knative-monitoring --address 0.0.0.0 \
 $(kubectl get pods --namespace knative-monitoring --selector=app=grafana --output=jsonpath="{.items..metadata.name}") \
 3000
 ```
