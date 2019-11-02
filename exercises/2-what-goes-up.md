@@ -25,7 +25,12 @@ If all is well, you will see that two or three pods have been created.
 
 In our monitoring tool this load will be visualized. 
 Checkout the 'Knative Serving - Scaling Debugging' dashboard. \
-_Hint: we've added the alias `knmonitor` to start the proxy to the Grafana dashboards._ 
+```
+kubectl port-forward -n knative-monitoring --address 0.0.0.0 \
+$(kubectl get pods -n knative-monitoring --selector=app=grafana --output=jsonpath="{.items..metadata.name}") \
+3000
+```
+ 
 
 
 ## Panic!

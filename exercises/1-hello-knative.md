@@ -6,10 +6,11 @@ Each deployment will be started with the push of a button.
 ### Deploy your application
 We've already created a docker image for you. You can find this image at
 docker.io/knativeredbutton/game:latest
+Note: you don't need to download this image, you'll use the string later on.
 
 Using the button, you will try to deploy that application to the cloud. Do not forget to give your service a name and deploy it in your own namespace.
 
-Setup the deployment-script (deploy.sh), so that it performs the deployment and push the button...
+Alter the deployment-script (deploy.sh in volume-docker) (there is a hint in the script), so that it performs the deployment and push the button...
 
 At this point a deployment should be triggered and you will end up with a running service. 
 The final output shows a service with status 3 OK / 3 and a running pod.  
