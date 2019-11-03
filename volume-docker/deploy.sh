@@ -9,14 +9,9 @@ exec 1>${LOG_FILE} 2>&1
 export KNATIVE_NAMESPACE=""
 export KNATIVE_SERVICE=""
 
-# Setup cloud configuration, not to be change by participant
-kubectl config set-context --current --namespace=${KNATIVE_NAMESPACE}
-
-echo "Starting deployment at: $(date +"%T")"
-
-echo
 echo '===================='
-echo 'Setting up environment...'
+echo 'Set namespace to your namespace...'
+kubectl config set-context --current --namespace=${KNATIVE_NAMESPACE}
 
 echo
 echo '===================='
@@ -25,6 +20,7 @@ kubectl get namespace ${KNATIVE_NAMESPACE} --no-headers=true
 
 echo
 echo '===================='
+echo "Starting deployment at: $(date +"%T")"
 echo 'Running deployment...'
 
 # To be changed by participant (complete the statement on one line)
@@ -43,7 +39,7 @@ kn service list
 
 echo
 echo '===================='
-echo 'pods currently active:'
+echo 'Pods currently active:'
 kubectl get pods -n ${KNATIVE_NAMESPACE}
 echo
 echo '===================='
