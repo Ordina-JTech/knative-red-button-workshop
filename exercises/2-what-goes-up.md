@@ -1,12 +1,10 @@
-//TODO: can we set a default global limit of 1?
-
 # What goes up... KNative Serving
 
 During times of high load you want your applications to scale up without bothering you. KNative allows you to setup automatically scaling applications with ease. 
 
-In the last exercise you have deployed a single application to the cluster. Now, we are going to use that application to simulate a heavily loaded system. 
+In the previous exercise you have deployed a single application to the cluster. Now, we are going to use that application to simulate a heavily loaded system. 
 
-Using the `kn` command-line client, try to setup a deployment that automatically scales up to a maximum of three pods when under load. 
+Using the `kn` command-line client, we will try to setup a deployment that automatically scales up to a maximum of three pods when under load. 
 When the load decreases, the pods should automatically scale down to zero.
 
 
@@ -30,7 +28,7 @@ kubectl port-forward -n knative-monitoring --address 0.0.0.0 \
 $(kubectl get pods -n knative-monitoring --selector=app=grafana --output=jsonpath="{.items..metadata.name}") \
 3000
 ```
- 
+_Tip: if you want to open multiple bash terminals in your container you can attach to a container as often as you want by running `docker exec -it rb-button bash` or for Windows:`winpty docker.exe exec -it rb-button bash` in a new terminal window._ 
 
 
 ## Panic!
