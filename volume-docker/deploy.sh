@@ -1,50 +1,51 @@
 #!/usr/bin/env bash
 set -e
+export LOG_FILE=/volume-docker/output-deploy-script.log
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>${LOG_FILE} 2>&1
 
 ## To be changed by participant
 export KNATIVE_NAMESPACE=""
 export KNATIVE_SERVICE=""
 
-# log file, not to be changed by participant
-export LOG_FILE=/volume-docker/output-deploy-script.log
-
 # Setup cloud configuration, not to be change by participant
 kubectl config set-context --current --namespace=${KNATIVE_NAMESPACE}
 
-echo "Starting deployment at: $(date +"%T")"                  > ${LOG_FILE} 2>&1
+echo "Starting deployment at: $(date +"%T")"
 
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
-echo 'Setting up environment...'                              >> ${LOG_FILE} 2>&1
+echo
+echo '===================='
+echo 'Setting up environment...'
 
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
-echo 'Verifying namespace...'                                 >> ${LOG_FILE} 2>&1
-kubectl get namespace ${KNATIVE_NAMESPACE} --no-headers=true  >> ${LOG_FILE} 2>&1
+echo
+echo '===================='
+echo 'Verifying namespace...'
+kubectl get namespace ${KNATIVE_NAMESPACE} --no-headers=true
 
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
-echo 'Running deployment...'                                  >> ${LOG_FILE} 2>&1
+echo
+echo '===================='
+echo 'Running deployment...'
 
-# To be changed by participant (keep it on one line and make sure '>> ${LOG_FILE} 2>&1' is at the end of the line)
-kn service create --help                                      >> ${LOG_FILE} 2>&1
-
-
+# To be changed by participant (complete the statement on one line)
+kn service create --help
 
 
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
-echo "Finished deployment at: $(date +"%T")"                  >> ${LOG_FILE} 2>&1
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
-echo 'List of services currently deployed:'                   >> ${LOG_FILE} 2>&1
-kn service list                                               >> ${LOG_FILE} 2>&1
 
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
-echo 'pods currently active:'                                 >> ${LOG_FILE} 2>&1
-kubectl get pods -n ${KNATIVE_NAMESPACE}                      >> ${LOG_FILE} 2>&1
-echo                                                          >> ${LOG_FILE} 2>&1
-echo '===================='                                   >> ${LOG_FILE} 2>&1
+
+echo
+echo '===================='
+echo "Finished deployment at: $(date +"%T")"
+echo
+echo '===================='
+echo 'List of services currently deployed:'
+kn service list
+
+echo
+echo '===================='
+echo 'pods currently active:'
+kubectl get pods -n ${KNATIVE_NAMESPACE}
+echo
+echo '===================='
 
 exit 0
