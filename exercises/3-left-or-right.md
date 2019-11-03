@@ -10,7 +10,14 @@ With the `kn` cli we can change the traffic to different revisions of your deplo
 You can check this with the command: `kn route list -n <namespace>`. You first need to add a tag to the current revision.
 If you don't do this and you do a new deployment, the new deployment will automatically get 100% of the traffic.
 
-So tag the current revision now. Hint: use this pattern: `kn service update <service> --tag <revisionname>=<tagname> -n <namespace>`
+So tag the current revision now. \
+_Hint: use this pattern: `kn service update <service> --tag <revisionname>=<tagname> -n <namespace>`_ \
+_Hint: to show current revisions use: `kn revision list -n <namespace>`_
+ 
+After creating the tag we are not ready yet. The most important part is to direct all the traffic to this tagged revision.  
+If you don't do the following step all the traffic will be automatically routed to the a new revision when creating a new revision.  
+Now route all the traffic to the tag you just created above.  
+Use: `kn service update <service> --traffic <tagname>=100,@latest=0 -n <namespace>` 
  
 You have now setup the first revision of your application. 
 
@@ -18,9 +25,10 @@ You have now setup the first revision of your application.
 ## Staging the next release
 For a final check you might want to put a next release live, without directly exposing it to the users. 
 
-Now alter the `deploy.sh` script and deploy your next revision.
+Now alter the `deploy.sh` script and deploy your next revision (_hint: you cannot use kn service 'create' anymore_).
 Make sure to change the 'style' environment variable, so you can differentiate between the releases from your browser. 
-Possible options are: monochrome (default), vim, custom, retro
+Possible options are: monochrome (default), vim, custom, retro \
+_Note: write the option without quotes ~~"vim"~~_
 
 Use `kn` to check to which revision your traffic is routed to now:
 `kn route list -n <namespace>`

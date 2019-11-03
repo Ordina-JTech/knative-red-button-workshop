@@ -4,14 +4,16 @@ In this exercise you will learn to deploy a simple application to a remote cloud
 Each deployment will be started with the push of a button. 
 
 ### Deploy your application
-We've already created a docker image for you. You can find this image at
-docker.io/knativeredbutton/game:latest
+We've already created a docker image for you. You can find this image at 
+`docker.io/knativeredbutton/game:latest`. \
+_Note: you don't need to download this image, you'll use the string later on._
 
 Using the button, you will try to deploy that application to the cloud. Do not forget to give your service a name and deploy it in your own namespace.
 
-Setup the deployment-script (deploy.sh), so that it performs the deployment and push the button...
+Alter the deployment-script (deploy.sh in volume-docker folder), so that it performs the deployment when pushing the button... \
+_Note: the output of deploy.sh is written to the file output-deploy-script.log which you can find after running the deploy.sh script in the volume-docker folder as well._  
 
-At this point a deployment should be triggered and you will end up with a running service. 
+When you push the button a deployment should be triggered and you will end up with a running service. 
 The final output shows a service with status 3 OK / 3 and a running pod.  
 It also show you the URL where you can access your application. 
 

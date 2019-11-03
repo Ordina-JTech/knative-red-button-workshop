@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-
+# to be changed by participant
 SERVICE_DOMAIN="http://<SERVICE>.<WORKSPACE>.<IP-ADDRESS>.sslip.io";
+
 NUMBER_OF_CONCURRENT_CALLS=7;
 
 counter=1
