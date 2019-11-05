@@ -36,10 +36,10 @@ Using what you have seen in the Pipeline definition, complete this file.
 Add the following snippet as the deployment-part of deploy.sh...
 ```
 echo "Setting up pipeline"
-kubectl apply -f exercises/4-tekton-pipelines/pipeline.yaml
+kubectl apply -f 4-tekton-pipelines/pipeline.yaml
 
 echo "Run pipeline"
-PIPELINE_RUN=`kubectl create -f exercises/4-tekton-pipelines/pipeline-run.yaml | cut -d' ' -f1`
+PIPELINE_RUN=`kubectl create -f 4-tekton-pipelines/pipeline-run.yaml | cut -d' ' -f1`
 
 echo "Wait for pipeline to finish"
 kubectl wait ${PIPELINE_RUN} --for=condition=Succeeded --timeout=180s
