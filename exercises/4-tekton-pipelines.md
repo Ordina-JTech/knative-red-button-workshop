@@ -71,8 +71,8 @@ The best way to visually see what your Tekton pipeline is doing is by making use
 and view PipelineRuns, TaskRuns and PipelineResources. 
 
 From your command-line type the following:
-```sh
-kubectl -n tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
+```
+kubectl port-forward -n tekton-pipelines --address 0.0.0.0 svc/tekton-dashboard 9097:9097 
 ```
 You can now access the Tekton Dashboard at `http://localhost:9097`
 
