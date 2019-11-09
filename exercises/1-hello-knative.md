@@ -36,6 +36,8 @@ Try the URL to see if your application is up and running.
 
 Congratulations, you've done your first KNative deployment!
 
+_Note for GitBash users: if nothing happens although there is a success message shown, please check the EOL-type used in the deploy.sh script, this should be Unix style (LF) and not Windows style (CR LF) (you can convert this with Notepad++ for example)_ 
+
 
 
 ### Hi there!
