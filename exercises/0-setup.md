@@ -9,12 +9,11 @@ Install the following if not yet installed
 ## Connect the red button
 First connect the red button with the usb-cable. After that make the button listen to button pushes by running the `button.sh` (in GitBash). This script should keep running during the whole workshop.
 
-## Load Docker Image
-We have build our own Docker image in order to let you access the clouds without that you need to install all kinds of CLI's. We first need to load the red-button-bridge.tgz zip file. You can find this file in the 'docker-image' directory. \
-Now load the image into Docker with the following command:
+## Pull Docker Image
+We built our own Docker image in order to let you access the clouds without that you need to install all kinds of CLI's. Now pull the image.
 ```
-docker load < red-button-bridge.tgz
-``` 
+https://hub.docker.com/r/knativeredbutton/red-button-bridge
+```
 
 ## Run Docker Image
 _Note: Windows users should share their C-drive (or D-drive if this repo is pulled to there) in Docker Desktop (use settings menu in Docker)._
