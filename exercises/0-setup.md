@@ -12,7 +12,7 @@ First connect the red button with the usb-cable. After that make the button list
 ## Pull Docker Image
 We built our own Docker image in order to let you access the clouds without that you need to install all kinds of CLI's. Now pull the image.
 ```
-https://hub.docker.com/r/knativeredbutton/red-button-bridge
+docker pull knativeredbutton/red-button-bridge
 ```
 
 ## Run Docker Image
