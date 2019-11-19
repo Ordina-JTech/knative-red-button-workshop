@@ -25,7 +25,7 @@ You have now setup the first revision of your application.
 ## Staging the next release
 For a final check you might want to put a next release live, without directly exposing it to the users. 
 
-Now alter the `deploy.sh` script and deploy your next revision (_hint: you cannot use kn service 'create' anymore_).
+Now alter the `deploy.sh` script and deploy your next revision (hint: you cannot use kn service 'create' anymore, please use kn service 'update').
 Make sure to change the 'style' environment variable, so you can differentiate between the releases from your browser. 
 Possible options are: monochrome (default), vim, custom, retro \
 _Note: write the option without quotes ~~"vim"~~_
