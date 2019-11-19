@@ -1,8 +1,8 @@
 #Setup your environment
 
 ## Downloads
-Install the following if not yet installed 
-- git-bash (only for Windows users) https://gitforwindows.org/   
+Install the following if not yet installed
+- git-bash (only for Windows users) https://gitforwindows.org/
 - Java Runtime Environment JRE https://java.com/en/download/manual.jsp or https://www.oracle.com/technetwork/java/javase/downloads/index.html
 - Docker (Desktop) https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe or https://docs.docker.com/docker-for-windows/release-notes/
 
@@ -30,22 +30,27 @@ winpty docker.exe run -it -e CLOUD="<choose>" --name rb-button -p 9097:9097 -p 3
 In this container you will execute all the kubectl and kn commands. This container should keep running during the whole workshop.
 
 ## Setup your environment variables in the deploy script
-In the shell-script 'deploy' you will find the following two environment variables. These will be used throughout the workshop to provide some consistency and separation of deployments. 
+In the shell-script ['deploy'](volume-docker/../../volume-docker/deploy.sh) you will find the following two environment variables. These will be used throughout the workshop to provide some consistency and separation of deployments.
 
-KNATIVE_NAMESPACE - can be any cluser-unique value, you can use your name e.g. \
-KNATIVE_SERVICE - the name you want to give your application
+- *KNATIVE_NAMESPACE* : can be any cluser-unique value, you can use your name e.g. \
+- *KNATIVE_SERVICE* : the name you want to give your application
+
+> Update now the script `deploy.sh`
 
 ## Create a namespace in Kubernetes
-During this workshop we all will use the same Kubernetes cluster. To  separate your work with that of the other participants we will setup a namespace you should use. 
+During this workshop we all will use the same Kubernetes cluster. To separate your work with that of the other participants we will setup a namespace you should use.
 
 Use the commands below to create your namespace.
 
 ```
-kubectl create ns <your namespace which you filled in in the deploy script>
+kubectl create ns <KNATIVE_NAMESPACE> # use the namespace which you used in the deploy script
 ```
 
 ## Verify your setup
-Running `kubectl get nodes` should show the Kubernetes nodes, the names of the nodes might also indicate on which cloud you are working \
-Running `kubectl get namespaces` should include yours \
-Running `kubectl get pods -n <your namespace>` should output nothing for now \
-Running `kubectl get pods --all-namespaces` should return a list of pods
+- Running `kubectl get nodes` should show the Kubernetes nodes, the names of the nodes might also indicate on which cloud you are working.
+
+- Running `kubectl get namespaces` shows all namespaces which should include the one you have created earlier.
+
+- Running `kubectl get pods -n <KNATIVE_NAMESPACE>` should output nothing for now
+
+- Running `kubectl get pods --all-namespaces` should return a list of pods
