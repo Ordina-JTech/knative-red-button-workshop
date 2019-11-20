@@ -9,12 +9,11 @@ Install the following if not yet installed
 ## Connect the red button
 First connect the red button with the usb-cable. After that make the button listen to button pushes by running the `button.sh` (in GitBash). This script should keep running during the whole workshop.
 
-## Load Docker Image
-We have build our own Docker image in order to let you access the clouds without that you need to install all kinds of CLI's. We first need to load the red-button-bridge.tgz zip file. You can find this file in the 'docker-image' directory. \
-Now load the image into Docker with the following command:
+## Pull Docker Image
+We built our own Docker image in order to let you access the clouds without that you need to install all kinds of CLI's. Now pull the image.
 ```
-docker load < red-button-bridge.tgz
-``` 
+docker pull knativeredbutton/red-button-bridge
+```
 
 ## Run Docker Image
 _Note: Windows users should share their C-drive (or D-drive if this repo is pulled to there) in Docker Desktop (use settings menu in Docker)._
@@ -23,10 +22,10 @@ To run our prebuilt image and connect it to one of the clouds one must execute t
 ```
 # CLOUD should be one of: azure, aws or gcloud
 # The volume mapping points to the folder 'volume-docker' containing the deployment script and the logging will be written there
-docker run -it -e CLOUD="<choose>" --name rb-button -p 9097:9097 -p 3000:3000 -v "$(pwd)/volume-docker":/volume-docker red-button-bridge
+docker run -it -e CLOUD="<choose>" --name rb-button -p 9097:9097 -p 3000:3000 -v "$(pwd)/volume-docker":/volume-docker knativeredbutton/red-button-bridge
 
 # For Windows with GitBash you might instead need to run this command to start the docker container
-winpty docker.exe run -it -e CLOUD="<choose>" --name rb-button -p 9097:9097 -p 3000:3000 -v /$(pwd)/volume-docker:/volume-docker red-button-bridge
+winpty docker.exe run -it -e CLOUD="<choose>" --name rb-button -p 9097:9097 -p 3000:3000 -v /$(pwd)/volume-docker:/volume-docker knativeredbutton/red-button-bridge
 ```
 In this container you will execute all the kubectl and kn commands. This container should keep running during the whole workshop.
 

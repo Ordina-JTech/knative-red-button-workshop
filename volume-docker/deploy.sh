@@ -8,6 +8,8 @@ exec 1>${LOG_FILE} 2>&1
 ## To be changed by participant
 export KNATIVE_NAMESPACE=""
 export KNATIVE_SERVICE=""
+export DOCKER_IMAGE=""
+export STYLE="monochrome"
 
 echo '===================='
 echo 'Set namespace to your namespace...'
@@ -23,11 +25,8 @@ echo '===================='
 echo "Starting deployment at: $(date +"%T")"
 echo 'Running deployment...'
 
-# To be changed by participant (complete the statement on one line)
-kn service create --help
-
-
-
+# Here the magic happens
+kn service create ${KNATIVE_SERVICE} --namespace ${KNATIVE_NAMESPACE} --image ${DOCKER_IMAGE} --env STYLE=${STYLE}
 
 echo
 echo '===================='
