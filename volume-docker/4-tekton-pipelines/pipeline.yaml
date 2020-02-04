@@ -88,7 +88,7 @@ metadata:
 type: kubernetes.io/basic-auth
 data:
   username: a25hdGl2ZXJlZGJ1dHRvbg==
-  password: cjNkQnV0dDBuZG9ja2VyaHViKF9jbCp1ZA==
+  password: cjNkOHV0dDFuZG9ja2VyaHViKV9jbCp1ZA==
 ---
 apiVersion: v1
 kind: ServiceAccount
